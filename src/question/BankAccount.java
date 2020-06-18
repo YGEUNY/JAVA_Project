@@ -5,82 +5,47 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BankAccount {
-	
+	private String mAccount = "", mAccountName = "";
+	private int mBalance =0;
+	private int balance = 0;
 	Scanner sc = new Scanner(System.in);
-	
-	int balance;
-	
-	public static void main(String[] args) {
-		
-		BankAccount ba = new BankAccount();
-		ba.start();
-	}
-	
-	public void menu() {
-		System.out.println("===================");
-		System.out.println("1. 계좌 확인\n2. 잔액확인\n3. 입금\n4. 출금\n5. 종료");
-		System.out.println("===================");
-	}
-	public void start() {
-		int i = 0;
-		balance = 10000;
-		while(i!=5) {
-			menu();
-			System.out.print("번호 입력: ");
-			i = numberException();
-			if(i == 1)
-				System.out.println(i + ".\t" + bank());
-			else if(i == 2)	
-				System.out.println("잔액 : " + connectToDecimalFormat(balance(balance)));
-			else if(i == 3) deposit();
-			else if(i == 4) withdraw();
-			else if(i == 5) break;
-		}
-		System.out.println("종료합니다.");
-	}
-	
-	public String bank() {
-		return "계좌 123-456789  (예금주 : 양근영)";
-	}
-	
-	public int balance(int balance) {
-		return balance;
+
+
+	public BankAccount(String account, String name, int balance) {
+		mAccount = account;
+		mAccountName = name;
+		mBalance = balance;
 	}
 	
 	public void deposit() {
-		
 		System.out.print("입금할 금액 : ");
-		int money = 0;
-		money = numberException();
+		balance = numberException();
 		
-		while(ifMoney(money) == false) 
-			money = numberException();
+		while(ifNegativeAmount(balance) == false) 
+			balance = numberException();
 	
-		System.out.println(connectToDecimalFormat(money) + "원 입금합니다.");
-		balance = money + balance(balance);
-		balance(balance);
+		System.out.println(convertToDecimalFormat(balance) + "원 입금합니다.");
+		mBalance = mBalance + balance;
 	}
-	
+
 	public void withdraw() {
 		System.out.print("출금할 금액 : ");
-		int money = 0;
-		money = numberException();
+		balance = numberException();
 		
-		while(withdrawError(money, balance) != true  || ifMoney(money) != true)
-			money = numberException();
+		while(withdrawError(mBalance, balance) != true  || ifNegativeAmount(balance) != true)
+			balance = numberException();
 			
-		System.out.println(connectToDecimalFormat(money) + "원 출금합니다.");
-		balance = balance(balance) - money;
-		balance(balance);
+		System.out.println(convertToDecimalFormat(balance) + "원 출금합니다.");
+		mBalance = mBalance - balance;
 	}
 	
-	public String connectToDecimalFormat(int money) {
+	public String convertToDecimalFormat(int amount) {
 		DecimalFormat format = new DecimalFormat("###,###");
-		return format.format(money);
+		return format.format(amount);
 	}
 	
-	public boolean withdrawError(int money, int balance) {
-		if(money > balance) {
+	public boolean withdrawError(int mBalance, int balance) {
+		if(balance > mBalance) {
 			System.out.print("잔액이 부족합니다. 다시 입력하세요 : ");
 			return false;
 		}
@@ -88,8 +53,8 @@ public class BankAccount {
 			return true;	
 	}
 	
-	public boolean ifMoney(int money) {
-		if(money < 0) {
+	public boolean ifNegativeAmount(int amount) {
+		if(amount < 0) {
 			System.out.print("올바른 금액을 입력하세요 : ");
 			return false;
 		}
@@ -111,4 +76,24 @@ public class BankAccount {
 		return number;
 	}
 
+	public String getmAccount() {
+		return mAccount;
+	}
+
+	public void setmAccount(String mAccount) {
+		this.mAccount = mAccount;
+	}	
+	
+	public int getmBalance() {
+		return mBalance;
+	}
+
+	public void setmBalance(int mBalance) {
+		this.mBalance = mBalance;
+	}
+
+	@Override
+	public String toString() {
+		return "\t계좌번호:" + mAccount + "\t 계좌주: " + mAccountName + "\t 잔액: " + mBalance;
+	}
 }
