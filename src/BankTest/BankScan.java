@@ -1,4 +1,4 @@
-package question;
+package BankTest;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
