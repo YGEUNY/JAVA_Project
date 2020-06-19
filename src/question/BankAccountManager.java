@@ -6,10 +6,11 @@ import java.util.ArrayList;
 
 public class BankAccountManager {
 	private ArrayList<BankAccount> mBankAccounts;
-	BankScan bs = new BankScan();
+	private BankScan mBankScan;
 	
-	public BankAccountManager() {
+	public BankAccountManager(BankScan bs) {
 		mBankAccounts = new ArrayList<BankAccount>();
+		mBankScan = bs;
 		//mBankDic = new Hashtable();
 	}
 	
@@ -17,26 +18,26 @@ public class BankAccountManager {
 		String account, name;
 		int balance = 0;
 		System.out.print("생성할 계좌 입력 : ");
-		account = bs.inputString();
+		account = mBankScan.inputString();
 		System.out.print("계좌주 입력 : ");
-		name = bs.inputString();
+		name = mBankScan.inputString();
 		System.out.print("계좌 잔액 입력 : ");
-		balance = bs.inputNumber();
+		balance = mBankScan.inputNumber();
 		
-		if(addAccount(account, name, balance))
+		if(addAccount(account, name, balance, mBankScan))
 			System.out.println("계좌를 생성하였습니다.");
 		else 
 			System.out.println("중복된 계좌입니다.");	
 	}
 	
-	public boolean addAccount(String account, String name, int balance) {
+	public boolean addAccount(String account, String name, int balance, BankScan bs) {
 		for(BankAccount ba : mBankAccounts) {
 			if(ba.getmAccount().equals(account)) {
 				System.out.println(" error message");
 				return false;
 			}
 		}
-		BankAccount ba = new BankAccount(account, name, balance);
+		BankAccount ba = new BankAccount(account, name, balance, bs);
 		mBankAccounts.add(ba);
 		return true;
 	}
@@ -51,7 +52,7 @@ public class BankAccountManager {
 		System.out.println("=====================================");
 		System.out.print("삭제할 계좌를 선택하세요 : ");
 		int index = 0;
-		index = bs.inputNumber();
+		index = mBankScan.inputNumber();
 		if((index - 1) <= mBankAccounts.size() && (index - 1) >= 0){
 			mBankAccounts.remove(index-1);
 			System.out.println(index + "번 계좌를 삭제하였습니다.");
@@ -69,7 +70,7 @@ public class BankAccountManager {
 		System.out.println("=====================================");
 		System.out.print("계좌를 선택하세요 : ");
 		int index = 0;
-		index = bs.inputNumber();
+		index = mBankScan.inputNumber();
 		if((index - 1) <= mBankAccounts.size() && (index - 1) >= 0){
 			start(index);
 		}else
@@ -88,7 +89,7 @@ public class BankAccountManager {
 		while(i!=5) {
 			menu();
 			System.out.print("번호 입력: ");
-			i = bs.inputNumber();
+			i = mBankScan.inputNumber();
 			if(i == 1)
 				System.out.println(mBankAccounts.get(indexNumber));
 			else if(i == 2)	

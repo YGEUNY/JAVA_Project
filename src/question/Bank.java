@@ -16,8 +16,8 @@ public class Bank {
 	
 	public void start() {
 		int i = 0;
-		BankAccountManager bm = new BankAccountManager();
 		BankScan bs = new BankScan();
+		BankAccountManager bm = new BankAccountManager(bs);		
 		while(i!=4) {
 			menu();
 			System.out.print("번호 입력: ");

@@ -6,20 +6,21 @@ public class BankAccount {
 	private String mAccount = "", mAccountName = "";
 	private int mBalance =0;
 	private int balance = 0;
-	BankScan bs = new BankScan();
-
-	public BankAccount(String account, String name, int balance) {
+	private BankScan mBankScan;
+	
+	public BankAccount(String account, String name, int balance, BankScan bs) {
 		mAccount = account;
 		mAccountName = name;
 		mBalance = balance;
+		mBankScan = bs;
 	}
 	
 	public void deposit() {
 		System.out.print("입금할 금액 : ");
-		balance = bs.inputNumber();
+		balance = mBankScan.inputNumber();
 		
 		while(ifNegativeAmount(balance) == false) 
-			balance = bs.inputNumber();
+			balance = mBankScan.inputNumber();
 	
 		System.out.println(convertToDecimalFormat(balance) + "원 입금합니다.");
 		mBalance = mBalance + balance;
@@ -27,10 +28,10 @@ public class BankAccount {
 
 	public void withdraw() {
 		System.out.print("출금할 금액 : ");
-		balance = bs.inputNumber();
+		balance = mBankScan.inputNumber();
 		
 		while(withdrawError(mBalance, balance) != true  || ifNegativeAmount(balance) != true)
-			balance = bs.inputNumber();
+			balance = mBankScan.inputNumber();
 			
 		System.out.println(convertToDecimalFormat(balance) + "원 출금합니다.");
 		mBalance = mBalance - balance;
