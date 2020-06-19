@@ -1,15 +1,12 @@
 package question;
 
 import java.text.DecimalFormat;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class BankAccount {
 	private String mAccount = "", mAccountName = "";
 	private int mBalance =0;
 	private int balance = 0;
-	Scanner sc = new Scanner(System.in);
-
+	BankScan bs = new BankScan();
 
 	public BankAccount(String account, String name, int balance) {
 		mAccount = account;
@@ -19,10 +16,10 @@ public class BankAccount {
 	
 	public void deposit() {
 		System.out.print("입금할 금액 : ");
-		balance = numberException();
+		balance = bs.inputNumber();
 		
 		while(ifNegativeAmount(balance) == false) 
-			balance = numberException();
+			balance = bs.inputNumber();
 	
 		System.out.println(convertToDecimalFormat(balance) + "원 입금합니다.");
 		mBalance = mBalance + balance;
@@ -30,10 +27,10 @@ public class BankAccount {
 
 	public void withdraw() {
 		System.out.print("출금할 금액 : ");
-		balance = numberException();
+		balance = bs.inputNumber();
 		
 		while(withdrawError(mBalance, balance) != true  || ifNegativeAmount(balance) != true)
-			balance = numberException();
+			balance = bs.inputNumber();
 			
 		System.out.println(convertToDecimalFormat(balance) + "원 출금합니다.");
 		mBalance = mBalance - balance;
@@ -60,20 +57,6 @@ public class BankAccount {
 		}
 		else
 			return true;	
-	}
-	
-	public int numberException() {
-		int number = 0;
-		while(true) {
-			try {
-				number = sc.nextInt();
-				break;
-			} catch (InputMismatchException e) {
-				sc = new Scanner(System.in);
-				System.out.print("숫자를 입력하세요 :");
-			}
-		}
-		return number;
 	}
 
 	public String getmAccount() {

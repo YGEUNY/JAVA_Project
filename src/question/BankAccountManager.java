@@ -2,20 +2,11 @@ package question;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+//import java.util.Dictionary;
 
 public class BankAccountManager {
-	Scanner sc = new Scanner(System.in);
 	private ArrayList<BankAccount> mBankAccounts;
-	
-	public static void main(String[] args) {
-		BankAccountManager bm = new BankAccountManager();
-		for(int i=0;i<3;i++) {
-			bm.makeAccount();
-		}
-	}
+	BankScan bs = new BankScan();
 	
 	public BankAccountManager() {
 		mBankAccounts = new ArrayList<BankAccount>();
@@ -26,11 +17,11 @@ public class BankAccountManager {
 		String account, name;
 		int balance = 0;
 		System.out.print("생성할 계좌 입력 : ");
-		account = sc.next();
+		account = bs.inputString();
 		System.out.print("계좌주 입력 : ");
-		name = sc.next();
+		name = bs.inputString();
 		System.out.print("계좌 잔액 입력 : ");
-		balance = sc.nextInt();
+		balance = bs.inputNumber();
 		
 		if(addAccount(account, name, balance))
 			System.out.println("계좌를 생성하였습니다.");
@@ -60,10 +51,10 @@ public class BankAccountManager {
 		System.out.println("=====================================");
 		System.out.print("삭제할 계좌를 선택하세요 : ");
 		int index = 0;
-		index = sc.nextInt();
+		index = bs.inputNumber();
 		if((index - 1) <= mBankAccounts.size() && (index - 1) >= 0){
 			mBankAccounts.remove(index-1);
-			System.out.println(index-1 + "번 계좌를 삭제하였습니다.");
+			System.out.println(index + "번 계좌를 삭제하였습니다.");
 		}else
 			System.out.println("존재하지 않는 목록입니다.");
 	}
@@ -78,7 +69,7 @@ public class BankAccountManager {
 		System.out.println("=====================================");
 		System.out.print("계좌를 선택하세요 : ");
 		int index = 0;
-		index = sc.nextInt();
+		index = bs.inputNumber();
 		if((index - 1) <= mBankAccounts.size() && (index - 1) >= 0){
 			start(index);
 		}else
@@ -97,7 +88,7 @@ public class BankAccountManager {
 		while(i!=5) {
 			menu();
 			System.out.print("번호 입력: ");
-			i = numberException();
+			i = bs.inputNumber();
 			if(i == 1)
 				System.out.println(mBankAccounts.get(indexNumber));
 			else if(i == 2)	
@@ -117,19 +108,5 @@ public class BankAccountManager {
 	
 	public BankAccount getAccount(String account) {
 		return null;
-	}
-	
-	public int numberException() {
-		int number = 0;
-		while(true) {
-			try {
-				number = sc.nextInt();
-				break;
-			} catch (InputMismatchException e) {
-				sc = new Scanner(System.in);
-				System.out.print("숫자를 입력하세요 :");
-			}
-		}
-		return number;
 	}
 }

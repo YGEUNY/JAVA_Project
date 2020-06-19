@@ -2,16 +2,11 @@ package question;
 
 /////////////// Alt + Shift + F 누르면 줄 정리 //////////
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Bank {
-	Scanner sc = new Scanner(System.in);
-
 	public static void main(String[] args) {
 		Bank ba = new Bank();
 		ba.start();
-	}	
+	}
 	
 	public void menu() {
 		System.out.println("===================");
@@ -22,10 +17,11 @@ public class Bank {
 	public void start() {
 		int i = 0;
 		BankAccountManager bm = new BankAccountManager();
+		BankScan bs = new BankScan();
 		while(i!=4) {
 			menu();
 			System.out.print("번호 입력: ");
-			i = numberException();
+			i = bs.inputNumber();
 			if(i == 1)
 				bm.makeAccount();
 			else if(i == 2)
@@ -33,22 +29,7 @@ public class Bank {
 			else if(i == 3)
 				bm.selectAccount();
 			else if(i == 4) break;
-				
 		}
 		System.out.println("종료합니다.");
-	}
-	
-	public int numberException() {
-		int number = 0;
-		while(true) {
-			try {
-				number = sc.nextInt();
-				break;
-			} catch (InputMismatchException e) {
-				sc = new Scanner(System.in);
-				System.out.print("숫자를 입력하세요 :");
-			}
-		}
-		return number;
 	}
 }
