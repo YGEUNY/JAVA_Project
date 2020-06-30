@@ -28,22 +28,24 @@ public class Main {
 	
 	public void makeCharacter() {
 		String characterName = sc.next();
-		while(!existName(characterName)) {
-			
-		}
 		String job = sc.next();
 		int level = 1;
-		Character chracter = new Character()
+		int hp = 100;
+		int mp = 200;
+		if(existName(characterName, job, level, hp, mp))
+			System.out.println("캐릭터 생성");
+		else
+			System.out.println("이미 존재하는 캐릭터 이름입니다.");
 	}
 	
-	public boolean existName(String characterName){
+	public boolean existName(String characterName, String job, int level, int hp, int mp){
 		for(Character c : CharacterList) {
 			if(characterName.equals(c.getCharacterName())) {
-				System.out.println("이미 존재하는 이름입니다.");
 				return false;
 			}
 		}
-		
+		Character character = new Character(characterName, job, level, hp, mp);
+		CharacterList.add(character);
 		return true;
 	}
 	
@@ -52,7 +54,7 @@ public class Main {
 		String name = sc.next();
 		
 		for(Character c : CharacterList) {
-			if(name.equals(c.characterName)); 
+			
 		}
 	}
 	
@@ -62,17 +64,10 @@ public class Main {
 		System.out.print("아이템 설정할 캐릭터 이름 : ");
 		String name = sc.next();
 		for(Character c : CharacterList) {
-			if(name.equals(c.characterName)) {
-				hp = sc.nextInt();
-				mp = sc.nextInt();
-				hair = sc.nextInt();
-				shoose = sc.nextInt();
-				Items item = new Items();
-				Item.add(item);
+			
 			}
 		}
 		
-	}
 	
 	public void showItems() {
 		

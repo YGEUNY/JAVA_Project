@@ -7,17 +7,16 @@ public class Character {
 	private String characterName, job;
 	private int level, hp, mp;
 	private long guid;
-
-	public Character(String characterName, String job, int level, int hp, int mp, long guid) {
+	
+	public Character(String characterName, String job, int level, int hp, int mp) {
 		super();
 		this.characterName = characterName;
 		this.job = job;
 		this.level = level;
 		this.hp = hp;
 		this.mp = mp;
-		this.guid = guid;
 	}
-	
+
 	public String getCharacterName() {
 		return characterName;
 	}
