@@ -8,13 +8,14 @@ public class Character {
 	private int level, hp, mp;
 	private long guid;
 	
-	public Character(String characterName, String job, int level, int hp, int mp) {
+	public Character(String characterName, String job, int level, int hp, int mp, long guid) {
 		super();
 		this.characterName = characterName;
 		this.job = job;
 		this.level = level;
 		this.hp = hp;
 		this.mp = mp;
+		this.guid = guid;
 	}
 
 	public String getCharacterName() {
@@ -63,5 +64,11 @@ public class Character {
 
 	public void setGuid(long guid) {
 		this.guid = guid;
+	}
+
+	@Override
+	public String toString() {
+		return "Character [characterName=" + characterName + ", job=" + job + ", level=" + level + ", hp=" + hp
+				+ ", mp=" + mp + ", guid=" + guid + "]";
 	}
 }

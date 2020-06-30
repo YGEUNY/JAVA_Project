@@ -2,35 +2,21 @@ package GameTest;
 
 public class Skills {
 
-	private String skillA, skillB, skillC;
+	private String skillCode;
 	private int skillLevel;
 	private String name;
 	
-	public Skills(String skillA, String skillB, String skillC, int skillLevel,String name) {
+	public Skills(String skillCode, int skillLevel, String name) {
 		super();
-		this.skillA = skillA;
-		this.skillB = skillB;
-		this.skillC = skillC;
+		this.skillCode = skillCode;
 		this.skillLevel = skillLevel;
 		this.name = name;
 	}
-	public String getSkillA() {
-		return skillA;
+	public String getSkillCode() {
+		return skillCode;
 	}
-	public void setSkillA(String skillA) {
-		this.skillA = skillA;
-	}
-	public String getSkillB() {
-		return skillB;
-	}
-	public void setSkillB(String skillB) {
-		this.skillB = skillB;
-	}
-	public String getSkillC() {
-		return skillC;
-	}
-	public void setSkillC(String skillC) {
-		this.skillC = skillC;
+	public void setSkillCode(String skillCode) {
+		this.skillCode = skillCode;
 	}
 	public int getSkillLevel() {
 		return skillLevel;
@@ -38,6 +24,10 @@ public class Skills {
 	public void setSkillLevel(int skillLevel) {
 		this.skillLevel = skillLevel;
 	}
-	
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}	
 }
