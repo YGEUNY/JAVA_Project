@@ -52,7 +52,7 @@ public class Main {
 	
 	public String choiceJob(){
 		System.out.println("======== 직업 =======");
-		System.out.println("1. 용사\n2. 궁수\n3. 마법사\n4. 자객");
+		System.out.println("1. 검사\n2. 궁수\n3. 마법사\n4. 자객");
 		System.out.println("=====================");
 		int choice;
 		while(true) {
@@ -64,7 +64,7 @@ public class Main {
 				break;
 		}
 		if(choice == 1) 
-			return "용사";
+			return "검사";
 		else if(choice == 2)
 			return "궁수";
 		else if(choice == 3)
