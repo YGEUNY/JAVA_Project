@@ -1,13 +1,12 @@
 package GameTest;
 
-public class Skills {
+public class Skill {
 
 	private String skillCode;
 	private int skillLevel;
 	private String name;
 	
-	public Skills(String skillCode, int skillLevel, String name) {
-		super();
+	public Skill(String skillCode, int skillLevel, String name) {
 		this.skillCode = skillCode;
 		this.skillLevel = skillLevel;
 		this.name = name;

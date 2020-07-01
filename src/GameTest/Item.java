@@ -1,17 +1,20 @@
 package GameTest;
 
-public class Items {
+public class Item {
 	private int itemCode;
 	private int itemCount;
 	private String name;
 	private long guid;
 
-	public Items(int itemCode, int itemCount, String name, long guid) {
-		super();
-		this.itemCode = itemCode;
-		this.itemCount = itemCount;
+	public Item(String name, int itemCode, long guid, int itemCount) {
 		this.name = name;
+		this.itemCode = itemCode;		
 		this.guid = guid;
+		this.itemCount = itemCount;
+	}
+	
+	public static Item createItem(String name, int itemCode, long guid, int itemCount) {
+		return new Item(name, itemCode, guid, itemCount);
 	}
 
 	public int getItemCode() {
@@ -39,12 +42,11 @@ public class Items {
 	}
 
 	public long getGuid() {
+		guid++;
 		return guid;
 	}
 
 	public void setGuid(long guid) {
 		this.guid = guid;
 	}
-
-	
 }

@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	private ArrayList<Items> Item;
-	private ArrayList<Skills> Skill;
-	private ArrayList<Character> CharacterList;
+	private ArrayList<Character> characters;
 	Scanner sc =  new Scanner(System.in);
 	long guid = 0;
+//	long in = 100000000000000L;
 	
 	public static void main(String[] args) {
 		Main run = new Main();
@@ -35,18 +34,16 @@ public class Main {
 			characterName = sc.next();
 		}			
 		String job = choiceJob();
-		int basicLevel = 1;
-		int basicHp = 100;
-		int basicMp = 200;
+		
 		guid++;
-		Character character = new Character(characterName, job, basicLevel, basicHp, basicMp, guid);
-		CharacterList.add(character);
+		Character character = new Character(characterName, job,guid);
+		characters.add(character);
 		System.out.println("캐릭터 생성 완료");
 		
 	}
 	
 	public boolean existName(String characterName){
-		for(Character c : CharacterList) {
+		for(Character c : characters) {
 			if(characterName.equals(c.getCharacterName())) 
 				return false;
 		}
@@ -77,23 +74,27 @@ public class Main {
 		else	return null;		
 	}
 	
+	
 	public void choiceCharacter() {
+		int index = 1;
+		for(Character c: characters) {
+			System.out.println("=============================================");
+			System.out.println(index + c.toString());
+			System.out.println("=============================================");
+			index++;
+		}
 		System.out.print("플레이 할 캐릭터를 선택하세요 : ");
-		for(Character c: CharacterList) {
-			System.out.println(c.toString());
-		}
-		String name = sc.next();
-		int count =0 ;
-		for(Character c : CharacterList) {
-			if(name.equals(c.getCharacterName())) {
-
-			}
-			else
-				count++;
-		}
-		
-		if(count == guid)
-			System.out.println("");
+		int choice = sc.nextInt();
+//		for() {
+//			if() {
+//
+//			}
+//			else
+//				count++;
+//		}
+//		
+//		if(count == guid)
+//			System.out.println("존재하지 않는 캐릭터 목록입니다.");
 	}
 	
 	
@@ -102,12 +103,12 @@ public class Main {
 	}
 		
 	
-	public void showItems() {
-		
-		for(Items i : Item) {
-			
-		}
-		
-	}
+//	public void showItems() {
+//		
+//		for(Item i : Items) {
+//			
+//		}
+//		
+//	}
 	
 }
