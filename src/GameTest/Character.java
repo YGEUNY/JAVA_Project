@@ -25,6 +25,7 @@ public class Character {
 		skills = new  ArrayList<Skill>();
 		
 		initItems(job);
+		initSkills(job);
 	}
 
 	public static Character createCharacter(String characterName, String job, long guid) {
@@ -47,6 +48,17 @@ public class Character {
 		getItem(ItemDef.BEGINNER_PANTS, 1);
 		getItem(ItemDef.BEGINNER_SHOES, 1);
 		getItem(ItemDef.BEGINNER_GLOVES, 1);
+	}
+	private void initSkills(String job) {
+		if (job.equals("°Ë»ç")) {
+			getItem(ItemDef.LONG_SORD, 1);
+		}else if (job.equals("±Ã¼ö")){
+			getItem(ItemDef.GOLD_BOW, 1);
+		}else if (job.equals("¸¶¹ý»ç")) {
+			getItem(ItemDef.OLD_MAGICSTICK, 1);
+		}else if (job.equals("ÀÚ°´")) {
+			getItem(ItemDef.WIND_BLADE, 1);
+		}
 	}
 
 	public boolean getItem(int itemCode, int itemCount) {

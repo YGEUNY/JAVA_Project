@@ -13,23 +13,16 @@ public class CharacterManager {
 //		
 //	}
 
-	public void inputName(ArrayList<Character> characters) {
-		for (Character c : characters)
-			characterMap.put(c.getCharacterName(), c.getCharacterName());
+	public void inputName(String characterName) {
+		characterMap.put(characterName, characterName);
 	}
 
 	public boolean existName(ArrayList<Character> characters, String name) {
-//		for(String key : characterMap.keySet()) {
-//			if(key.equals(name))
-//				return false;
-//		}
-//		return true;
-
-		for (Character c : characters) {
-			if (name.equals(c.getCharacterName()))
-				return false;
-		}
-		return true;
+		Object characterNameObj = characterMap.get(name);
+		if(characterNameObj == null)
+			return true;
+		else
+			return false;
 	}
 
 	public long getGuid() {

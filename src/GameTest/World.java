@@ -40,16 +40,14 @@ public class World {
 		System.out.println("=====직업 선택=====");
 		String job = choiceJob();
 
-		if (createCharater(characterName, job)) {
-			characterManager.inputName(characters);
-			System.out.println("캐릭터 생성 완료");
-		}
+		createCharater(characterName, job);
 	}
-
-	public boolean createCharater(String characterName, String job) {
+	
+	public String createCharater(String characterName, String job) {
 		Character character = characterManager.createCharacter(characterName, job);
 		characters.add(character);
-		return true;
+		characterManager.inputName(characterName);
+		return "캐릭터 생성 완료";
 	}
 
 	public String choiceJob() {
